@@ -26,6 +26,7 @@ function App() {
   const getOptions = (key1, key2) => {
     const uniqueItems = new Set();
     const uniqueItemsData = [];
+
     for (const item of customData) {
       if (
         item.table_name.includes("orders") &&
@@ -89,7 +90,6 @@ function App() {
             label: `Data for metric=${selectedOption.metric} and column_name=${selectedOption.column_name}`,
             data: valueArr,
             backgroundColor: randomColor()
-            // backgroundColor: "rgba(53, 162, 235, 0.5)"
           }
         ]
       };
