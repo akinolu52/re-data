@@ -59,7 +59,7 @@ function App() {
   };
 
   const getData = (option) => {
-    let x = data.filter(
+    const result = data.filter(
       (item) =>
         item.metric === option.metric &&
         item.column_name === option.column_name &&
@@ -67,7 +67,7 @@ function App() {
         item.time_window_end !== ""
     );
 
-    return x;
+    return result;
   };
 
   useEffect(() => {
@@ -83,7 +83,7 @@ function App() {
       const valueArr = getValues(result, "value");
       const timeWindowEndArr = getDateValues(result, "time_window_end");
 
-      const DATA = {
+      const barChatData = {
         labels: timeWindowEndArr,
         datasets: [
           {
@@ -93,7 +93,7 @@ function App() {
           }
         ]
       };
-      setChatData(DATA);
+      setChatData(barChatData);
     }
   };
 
@@ -102,7 +102,7 @@ function App() {
       <h1>Re_data</h1>
 
       <select onChange={handleSelect}>
-        <option value="null">Select</option>
+        <option value="null">Select an option</option>
         {options.map((option, index) => (
           <option key={index} value={JSON.stringify(option)}>
             {option.metric}({option.column_name})
