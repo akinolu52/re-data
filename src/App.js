@@ -21,6 +21,8 @@ function App() {
   const [data, setData] = useState([]);
   const [options, setOptions] = useState([]);
 
+  const [result, setResult] = useState({});
+
   const [chatData, setChatData] = useState(null);
 
   const getOptions = (key1, key2) => {
@@ -38,12 +40,19 @@ function App() {
           metric: item[key1],
           column_name: item[key2]
         });
-        uniqueItemsData.push({
+        const _res = {
           metric: item[key1],
           column_name: item[key2],
           value: item.value,
           time_window_end: item.time_window_end
-        });
+        };
+        uniqueItemsData.push(_res);
+
+        const _result = {
+          [`${item[key1]} ${item[key2]}`]: _res
+        };
+
+        setResult(_result);
       }
     }
 
